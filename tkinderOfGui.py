@@ -10,3 +10,7 @@ class Application(Frame):
         self.helloLabel.pack()
         self.quitButton = Button(self, text='Quit', command=self.quit)
         self.quitButton.pack()
+
+app = Application()
+app.master.title("Hello World")
+app.mainloop()
