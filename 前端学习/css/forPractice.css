@@ -1,0 +1,14 @@
+
+.pForNews{
+    color:'#333';
+    font-size:20px;
+    font-family: '雅黑';
+    margin:3% auto;
+}
+.divPractice{
+    height:54px;
+    border-top:  1px solid #f00;
+    border-bottom: 3px solid #666;
+    width: 400px;
+
+}
