@@ -10,7 +10,7 @@ from bs4 import BeautifulSoup as bs
 
 webdriverPath="C:\Program Files (x86)\Google\Chrome\Application\chromedriver.exe"
 browser = webdriver.Chrome(executable_path=webdriverPath)
-wait = WebDriverWait(browser,10)
+wait = WebDriverWait(browser,30)
 KEYWORD = 'IPAD'
 def index_page(page):
     """
@@ -23,7 +23,7 @@ def index_page(page):
         browser.get(url)
         if page>1:
             input = wait.until(
-                EC.presence_of_element_located((By.CSS_SEKECTIR,"#mainsrp-pager div.form > input"))
+                EC.presence_of_element_located((By.CSS_SELECTOR,"#mainsrp-pager div.form > input"))
             )
             submit = wait.until(
                 EC.element_to_be_clickable((By.CSS_SELECTOR,'#mainsrp-pager div.form > span .btn J_Submit'))
@@ -32,10 +32,10 @@ def index_page(page):
             input.send_keys(page)
             submit.click()
         wait.until(
-            EC.text_to_be_present_in_element((By.CSS_SELECTOR,'#mainsrp-pager li.item.active > span'),str(page))
+            EC.text_to_be_present_in_element((By.CSS_SELECTOR,'#mainsrp-pager li.item active > span'),str(page))
         )
         wait.until(
-            EC.presence_of_element_located((By.CSS_SELECTOR,'.m-itemlist .items .item'))
+            EC.presence_of_element_located((By.CSS_SELECTOR,'.m-itemlist .items .item*'))
         )
         get_products()
     except TimeoutError :
@@ -46,8 +46,8 @@ def get_products():
     提取商品数据
     """
     html = browser.page_source
-    doc = bs(html)
-    items = doc('#mainsrp-itemlist .items .item').items
+    doc = bs(html,"html5lib")
+    items = doc.find_all('#mainsrp-itemlist .items .item')
     for item in items:
         product = {
             'image' : item.find('.pic .img').attr('data-src'),
