@@ -15,3 +15,4 @@ for i in range(256):
     else:
         table.append(1)
 image = image.point(table, '1')
+image.show()
