@@ -22,6 +22,7 @@ bk(l)
 pendown()
 fd(l)
 
+
 def draw_tree(l, level):
     global r, g, b
     # save the current pen width
@@ -53,6 +54,7 @@ def draw_tree(l, level):
 
     # restore the previous pen width
     width(w)
+
 
 speed("fastest")
 

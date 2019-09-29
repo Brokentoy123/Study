@@ -33,6 +33,7 @@ def index_page(page):
                     (By.CSS_SELECTOR, '#mainsrp-pager div.form > span .btn J_Submit'))
             )
             input.clear()
+            submit.send_keys(Keys.END)
             input.send_keys(page)
             submit.click()
         wait.until(
@@ -55,6 +56,7 @@ def get_products():
     html = browser.page_source
     doc = bs(html, "html5lib")
     items = doc.find_all('#mainsrp-itemlist .items .item')
+    
     for item in items:
         product = {
             'image': item.find('.pic .img').attr('data-src'),

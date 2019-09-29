@@ -35,3 +35,6 @@ for t in range(4):
 #模糊
 image = image.filter(ImageFilter.BLUR)
 image.save('code.kpg','jpeg')
+
+if __name__ == "__main__":
+    draw.show()
